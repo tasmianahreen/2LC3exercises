@@ -1,0 +1,76 @@
+Corollary “Cons is not empty”: x ◃ xs = 𝜖  ≡  false
+Proof:
+    x ◃ xs = 𝜖  ≡  false
+  ≡⟨ “Definition of `false`” ⟩
+    x ◃ xs = 𝜖  ≡  ¬ true
+  ≡⟨ (3.11) ⟩
+    ¬ (x ◃ xs = 𝜖) ≡ true
+  ≡⟨ “Identity of ≡” ⟩
+    ¬ (x ◃ xs = 𝜖) ≡ true
+  ≡⟨ “Definition of ≠” ⟩
+    x ◃ xs ≠ 𝜖 ≡ true   
+  ≡⟨ “Cons is not empty” ⟩
+    true ≡ true
+  ≡⟨ “Reflexivity of ≡” ⟩
+    true
+
+Fact (H13a): (7 ◃ 1 ◃ 9 ◃ 𝜖) ▹ 5  = 7 ◃ 1 ◃ 9 ◃ 5 ◃ 𝜖
+Proof:
+    (7 ◃ 1 ◃ 9 ◃ 𝜖) ▹ 5
+  =⟨ “Definition of ▹ for ◃” ⟩
+    7 ◃ 1 ◃ 9 ◃ 𝜖 ▹ 5    
+  =⟨ “Definition of ▹ for 𝜖” ⟩
+    7 ◃ 1 ◃ 9 ◃ 5 ◃ 𝜖   
+
+Theorem (13.14) “Snoc is not empty”:  xs ▹ x ≠ 𝜖
+Proof:
+  By induction on `xs : Seq A`:
+    Base case `𝜖 ▹ x ≠ 𝜖`:
+        𝜖 ▹ x
+      =⟨ “Definition of ▹ for 𝜖” ⟩
+        x ◃ 𝜖
+      ≠⟨ “Cons is not empty” ⟩
+        𝜖 
+    Induction step `∀ y : A • (y ◃ xs) ▹ x ≠ 𝜖`:
+      For any `y : A`:
+          (y ◃ xs) ▹ x
+        =⟨ “Definition of ▹ for ◃” ⟩
+          y ◃ (xs ▹ x)
+        ≠⟨ “Cons is not empty” ⟩
+          𝜖
+
+Corollary “Snoc is not empty”:  xs ▹ x = 𝜖  ≡  false
+Proof:
+    xs ▹ x = 𝜖  ≡  false
+  =⟨ “Definition of `false`” ⟩
+    xs ▹ x = 𝜖  ≡ ¬ true
+  =⟨ (3.11) ⟩
+    ¬ (xs ▹ x = 𝜖) ≡ true
+  =⟨ “Definition of ≠” ⟩
+    xs ▹ x ≠ 𝜖 ≡ true 
+  =⟨ “Snoc is not empty” ⟩
+    true ≡ true
+  =⟨ “Reflexivity of ≡” ⟩
+    true
+
+Fact (H13b):  (4 ◃ 1 ◃ 𝜖) ⌢ (8 ◃ 5 ◃ 2 ◃ 𝜖) = 4 ◃ 1 ◃ 8 ◃ 5 ◃ 2 ◃ 𝜖
+Proof:
+    (4 ◃ 1 ◃ 𝜖) ⌢ (8 ◃ 5 ◃ 2 ◃ 𝜖)
+  =⟨ “Mutual associativity of ◃ with ⌢” ⟩
+    4 ◃ 1 ◃ (𝜖 ⌢ (8 ◃ 5 ◃ 2 ◃ 𝜖))
+  =⟨ “Left-identity of ⌢” ⟩      
+    4 ◃ 1 ◃ 8 ◃ 5 ◃ 2 ◃ 𝜖
+
+Theorem (13.19) “Right-identity of ⌢”:
+    xs ⌢ 𝜖 = xs
+Proof:
+  By induction on `xs : Seq A`:
+    Base case `𝜖 ⌢ 𝜖 = 𝜖`: By “Definition of ⌢ for 𝜖” 
+    
+    Induction step `∀ y : A • (y ◃ xs) ⌢ 𝜖 = (y ◃ xs)`:
+      For any `y : A`:
+          (y ◃ xs) ⌢ 𝜖
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          y ◃ (xs ⌢ 𝜖)
+        =⟨ Induction hypothesis ⟩
+          y ◃ xs
