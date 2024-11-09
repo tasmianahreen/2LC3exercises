@@ -1,0 +1,88 @@
+Theorem (11.26) “Symmetry of ∪”: S ∪ T = T ∪ S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ T ≡ e ∈ T ∪ S`:
+      For any `e`:
+          e ∈ S ∪ T
+        ≡⟨ “Union” ⟩
+          e ∈ S  ∨  e ∈ T
+        ≡⟨ “Symmetry of ∨” ⟩
+          e ∈ T ∨ e ∈ S
+        ≡⟨ “Union” ⟩
+          e ∈ T ∪ S
+
+Theorem (11.27) “Associativity of ∪”: S ∪ (T ∪ W) = (S ∪ T) ∪ W
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ (T ∪ W) ≡ e ∈ (S ∪ T) ∪ W`:
+      For any `e`:
+          e ∈ S ∪ (T ∪ W)
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ (T ∪ W)
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ T ∨ e ∈ W
+        ≡⟨ “Union” ⟩
+          e ∈ S ∪ T ∨ e ∈ W
+        ≡⟨ “Union” ⟩
+          e ∈ (S ∪ T) ∪ W 
+
+Theorem (11.28) “Idempotency of ∪”: S ∪ S = S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ S ≡ e ∈ S`:
+      For any `e`:
+          e ∈ S ∪ S
+        ≡⟨ “Union” ⟩ 
+          e ∈ S ∨ e ∈ S
+        ≡⟨ “Idempotency of ∨” ⟩
+          e ∈ S
+
+Theorem (11.31) “Weakening of ∪”: S ⊆ S ∪ T
+Proof:
+  Using “Set inclusion”:
+    Subproof for `∀ e • e ∈ S ⇒ e ∈ S ∪ T`:
+      For any `e`:
+          e ∈ S ∪ T
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ T
+        ⇐⟨ “Weakening” ⟩
+          e ∈ S
+
+Theorem “Weakening of ∩ within ∪”: Q ∪ (S ∩ T) ⊆ Q ∪ S
+Proof:
+  Using “Set inclusion”:
+    Subproof for `∀ e • e ∈ Q ∪ (S ∩ T) ⇒ e ∈ Q ∪ S`:
+      For any `e`:
+          e ∈ Q ∪ (S ∩ T)
+        ≡⟨ “Union” ⟩
+          e ∈ Q ∨ e ∈ (S ∩ T)
+        ≡⟨ “Intersection” ⟩
+          e ∈ Q ∨ (e ∈ S ∧ e ∈ T)
+        ⇒⟨ “Weakening” ⟩
+          e ∈ Q ∨ e ∈ S 
+        ≡⟨ “Union” ⟩
+          e ∈ Q ∪ S 
+
+Theorem “Subset membership” “Casting”:
+    X ⊆ Y ⇒ x ∈ X ⇒ x ∈ Y
+Proof:
+    X ⊆ Y
+  ≡⟨ “Set inclusion” ⟩
+    ∀ z • z ∈ X ⇒ z ∈ Y
+  ⇒⟨ “Trading for ∀” with “Instantiation” ⟩
+    (z ∈ X ⇒ z ∈ Y)[z ≔ x]
+  ≡⟨ Substitution ⟩
+    x ∈ X ⇒ x ∈ Y
+
+Theorem (11.59) “Transitivity of ⊆”: X ⊆ Y ⇒ Y ⊆ Z ⇒ X ⊆ Z
+Proof:
+  Assuming `X ⊆ Y`, `Y ⊆ Z`:
+    Using “Set inclusion”:
+      Subproof for `∀ e • e ∈ X ⇒ e ∈ Z`:
+        For any `e`:
+            e ∈ X
+          ⇒⟨ “Subset membership” with Assumption `X ⊆ Y` ⟩
+            e ∈ Y
+          ⇒⟨ “Subset membership” with Assumption `Y ⊆ Z` ⟩
+            e ∈ Z
+
