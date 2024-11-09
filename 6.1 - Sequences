@@ -74,3 +74,27 @@ Proof:
           y ◃ (xs ⌢ 𝜖)
         =⟨ Induction hypothesis ⟩
           y ◃ xs
+
+Theorem (13.20) “Associativity of ⌢”:
+    (xs ⌢ ys) ⌢ zs = xs ⌢ (ys ⌢ zs)
+Proof:
+  By induction on `xs : Seq A`:
+    Base case `(𝜖 ⌢ ys) ⌢ zs = 𝜖 ⌢ (ys ⌢ zs)`:
+        (𝜖 ⌢ ys) ⌢ zs
+      =⟨ “Definition of ⌢ for 𝜖” ⟩
+        ys ⌢ zs
+      =⟨ “Left-identity of ⌢” ⟩
+        𝜖 ⌢ (ys ⌢ zs)
+    
+    Induction step `∀ x : A • ((x ◃ xs) ⌢ ys) ⌢ zs = (x ◃ xs) ⌢ (ys ⌢ zs)`:
+      For any `x : A`:
+          ((x ◃ xs) ⌢ ys) ⌢ zs
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          (x ◃ (xs ⌢ ys)) ⌢ zs
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          x ◃ ((xs ⌢ ys) ⌢ zs)
+        =⟨ Induction hypothesis ⟩
+          x ◃ (xs ⌢ (ys ⌢ zs))
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          (x ◃ xs) ⌢ (ys ⌢ zs)
+
