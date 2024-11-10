@@ -86,3 +86,20 @@ Proof:
           ⇒⟨ “Subset membership” with Assumption `Y ⊆ Z` ⟩
             e ∈ Z
 
+Theorem “Golden rule for ∩ and ∪”: S ∩ T = S  ≡  T = S ∪ T
+Proof:
+    S ∩ T = S
+  ≡⟨ “Set extensionality” ⟩
+    ∀ e  •  e ∈ S ∩ T  ≡  e ∈ S
+  ≡⟨ “Intersection” ⟩
+    ∀ e  •  e ∈ S  ∧ e ∈ T  ≡  e ∈ S    
+  ≡⟨ “Golden rule” ⟩
+    ∀ e  •  e ∈ S  ∨ e ∈ T  ≡  e ∈ T 
+  ≡⟨ “Symmetry of ≡” , “Union” ⟩   
+    ∀ e  •  e ∈ T  ≡  e ∈ S ∪ T
+  ≡⟨ “Set extensionality” ⟩
+    T = S ∪ T
+
+╍╍╍ Axiom (11.4) “Set extensionality”: S = T  ≡  (∀ e  •  e ∈ S  ≡  e ∈ T)
+╍╍╍ Axiom (3.35) “Golden rule”: p ∧ q ≡ (p ≡ (q ≡ p ∨ q))
+╍╍╍ Lemma “Definition of ∧”: (p ∧ q) = (p ≡ (q ≡ p ∨ q))
